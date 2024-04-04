@@ -29,6 +29,7 @@ class Index extends Action
      */
     public function execute()
     {
+
         /** @var \Magento\Framework\View\Result\Page $resultPage */
         $resultPage = $this->pageFactory->create();
         return $resultPage;
