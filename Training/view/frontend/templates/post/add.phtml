@@ -1,0 +1,32 @@
+<?php
+/** @var \Anees\Training\Block\Post\Add $block */
+?>
+
+<form method="post"
+      action="<?php echo $block->getFormAction(); ?>"
+      id="my-form"
+      class="form"
+      data-mage-init='{"validation": {}}'>
+
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="field-1"><span>Title</span></label>
+            <div class="control">
+                <input name="title" id="title" title="Titel" value=""  class="input-text" type="text" data-validate='{"required":true, "text": true}'/>
+            </div>
+        </div>
+        <div class="field name required">
+            <label class="label" for="field-2"><span> Content</span></label>
+            <div class="control">
+                <textarea name="content" id="Content" title="Content"  class="input-text" rows="4" cols="50" required="true"></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+</form>
