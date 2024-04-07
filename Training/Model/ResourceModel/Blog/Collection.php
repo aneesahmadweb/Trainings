@@ -1,7 +1,7 @@
 <?php
 namespace Anees\Training\Model\ResourceModel\Blog;
 
-use Anees\Training\Model\Blog;
+use Anees\Training\Model\ResourceModel\Blog;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {

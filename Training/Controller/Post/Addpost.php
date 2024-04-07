@@ -10,6 +10,7 @@ use Magento\Framework\Message\ManagerInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
+use Anees\Training\Model\BlogFactory;
 
 class Addpost extends Action
 {
@@ -31,12 +32,17 @@ class Addpost extends Action
     /**
      * @var RedirectInterface
      */
-    protected $_redirect; // Change access level to protected
+    protected $redirect;
 
     /**
      * @var FormKeyValidator
      */
     protected $formKeyValidator;
+
+    /**
+     * @var BlogFactory
+     */
+    protected $blogFactory;
 
     /**
      * Addpost constructor.
@@ -45,47 +51,66 @@ class Addpost extends Action
      * @param PageFactory       $pageFactory
      * @param ManagerInterface  $messageManager
      * @param ResultFactory     $resultFactory
-     * @param RedirectInterface $_redirect
+     * @param RedirectInterface $redirect
      * @param FormKeyValidator  $formKeyValidator
+     * @param BlogFactory       $blogFactory
      */
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
         ManagerInterface $messageManager,
         ResultFactory $resultFactory,
-        RedirectInterface $_redirect,
-        FormKeyValidator $formKeyValidator
+        RedirectInterface $redirect,
+        FormKeyValidator $formKeyValidator,
+        BlogFactory $blogFactory
     ) {
         parent::__construct($context);
         $this->pageFactory = $pageFactory;
         $this->messageManager = $messageManager;
         $this->resultFactory = $resultFactory;
-        $this->_redirect = $_redirect;
+        $this->redirect = $redirect;
         $this->formKeyValidator = $formKeyValidator;
+        $this->blogFactory = $blogFactory;
     }
 
-
     /**
-     * Index Action
+     * Execute action
      *
-     * @return Redirect|Page
+     * @return Redirect
      */
     public function execute()
     {
-        // Validate form key
-        if (!$this->formKeyValidator->validate($this->getRequest())) {
-            $this->messageManager->addError(__('Invalid form key'));
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setUrl($this->_redirect->getRefererUrl()); // Redirect back to the same page
-            return $resultRedirect;
-        }
+        try {
+            // Validate form key
+            if (!$this->formKeyValidator->validate($this->getRequest())) {
+               $this->messageManager->addError('sdf');
+
+            }
 
             // Get form data
             $formData = $this->getRequest()->getParams();
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setUrl($this->_redirect->getRefererUrl()); // Redirect back to the same page
+
+            $name = $this->request->getParam('title', 'петро');
 
 
-            return $resultRedirect;
+            // Save data to database
+            $model = $this->blogFactory->create();
+            $model->setData($formData);
+            $model->save();
+
+            // Display success message
+            $this->messageManager->addSuccess(__('Data saved successfully'));
+        } catch (LocalizedException $e) {
+            // Display error message
+            $this->messageManager->addError($e->getMessage());
+        } catch (\Exception $e) {
+            // Display generic error message
+            $this->messageManager->addError(__('An error occurred while saving data'));
+        }
+
+        // Redirect back to the same page
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setUrl($this->redirect->getRefererUrl());
+        return $resultRedirect;
     }
 }

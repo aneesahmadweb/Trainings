@@ -1,0 +1,12 @@
+{
+    "training_blog": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "content": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
