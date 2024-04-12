@@ -90,7 +90,7 @@ class Addpost extends Action
             // Get form data
             $formData = $this->getRequest()->getParams();
 
-            $name = $this->request->getParam('title', 'петро');
+          /*  $name = $this->request->getParam('title', 'петро');*/
 
 
             // Save data to database

@@ -19,7 +19,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     public function _construct()
     {
         $this->_init(
-           Blog::class,
+            \Anees\Training\Model\Blog::class,
             \Anees\Training\Model\ResourceModel\Blog::class
         );
         $this->_map['fields']['entity_id'] = 'main_table.entity_id';

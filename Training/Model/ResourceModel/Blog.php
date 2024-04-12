@@ -2,7 +2,9 @@
 
 namespace Anees\Training\Model\ResourceModel;
 
-class Blog extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+
+class Blog extends AbstractDb
 {
     /**
      * Dependency Initilization
@@ -14,3 +16,4 @@ class Blog extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_init("training_blog", "entity_id");
     }
 }
+

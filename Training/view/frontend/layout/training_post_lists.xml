@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Add your head elements here -->
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <!-- Add your content blocks here -->
+            <block class="Anees\Training\Block\Post\Lists" name="collectionblock" template="Anees_Training::lists.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
