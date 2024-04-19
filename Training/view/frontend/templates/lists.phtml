@@ -3,7 +3,7 @@ $block = $this->getLayout()->createBlock(
     'Anees\Training\Block\Post\Lists'
 );
 ?>
-<table style="width: 50%">
+<table style="width: 100%">
     <thead>
     <tr>
         <th>Sr. No</th>
@@ -22,3 +22,8 @@ $block = $this->getLayout()->createBlock(
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php  if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom">
+        <?php echo $block->getPagerHtml(); ?>
+    </div>
+<?php endif; ?>
