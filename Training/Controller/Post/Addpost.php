@@ -80,6 +80,8 @@ class Addpost extends Action
      */
     public function execute()
     {
+
+
         try {
             // Validate form key
             if (!$this->formKeyValidator->validate($this->getRequest())) {
@@ -89,6 +91,19 @@ class Addpost extends Action
 
             // Get form data
             $formData = $this->getRequest()->getParams();
+            if(isset($formData['id'])){
+                echo $formData['id'];
+
+                $blog = $this->blogFactory->create()->load($formData['id']);
+                $blog->setData('title', $formData['title']);
+                $blog->setData('content', $formData['content']);
+                $blog->save();
+                $this->messageManager->addSuccess(__('The blog has been updated.'));
+                return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('*/*/edit', ['id' => $blog->getId()]);
+                //return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('*/*/edit', ['id' => $blog->getId()]);
+
+            }
+            exit;
 
           /*  $name = $this->request->getParam('title', 'петро');*/
 

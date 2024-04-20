@@ -1,0 +1,47 @@
+<?php
+/** @var \Anees\Training\Block\Post\Edit $block */
+?>
+
+<?php
+
+$Blog=$block->getBlog();
+
+?>
+<form method="post"
+      action="<?php echo $block->getFormAction(); ?>"
+      id="my-forms"
+      class="form"
+      data-mage-init='{"validation": {}}'>
+
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="field-1"><span>Title</span></label>
+            <div class="control">
+                <input name="title" id="title" title="Title" value="<?= $block->escapeHtml($Blog->getTitle()); ?>" class="required-entry input-text" type="text" required/>
+            </div>
+        </div>
+        <div class="field name required">
+            <label class="label" for="field-2"><span> Content</span></label>
+            <div class="control">
+                <textarea name="content" id="Content" title="Content" class="required-entry validate-no-html-tags" rows="4" cols="50" required="true"><?= $block->escapeHtml($Blog->getContent()); ?></textarea>
+
+            </div>
+        </div>
+    </fieldset>
+    <input type="hidden" name="id" value="<?= $block->escapeHtml($Blog->getId())?>">
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+{
+ "#my-forms": {
+     "validation": {}
+  }
+}
+</script>
