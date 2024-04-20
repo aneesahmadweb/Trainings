@@ -4,6 +4,8 @@
         <!-- Add your head elements here -->
     </head>
     <body>
+
+
         <referenceContainer name="content">
             <!-- Add your content blocks here -->
             <block class="Anees\Training\Block\Post\Lists" name="collectionblock" template="Anees_Training::lists.phtml"/>

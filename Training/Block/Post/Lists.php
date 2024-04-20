@@ -37,6 +37,9 @@ class Lists extends Template
     {
         parent::_prepareLayout();
         $this->pageConfig->getTitle()->set(__('My Blog List'));
+
+        $this->pageConfig->setPageLayout('1column'); // Set the page layout to full width
+
         if($this->getcoll()){
 
 

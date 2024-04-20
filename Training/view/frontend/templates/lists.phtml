@@ -9,6 +9,7 @@ $block = $this->getLayout()->createBlock(
         <th>Sr. No</th>
         <th>Title</th>
         <th>Content</th>
+        <th>Actions</th>
 
     </tr>
     </thead>
@@ -18,6 +19,12 @@ $block = $this->getLayout()->createBlock(
             <td><?= /* @escapeNotVerified */ $post->getentity_id() ?></td>
             <td><?= /* @escapeNotVerified */ $post->getTitle() ?></td>
             <td><?= /* @escapeNotVerified */ $post->getContent() ?></td>
+            <td>
+                <a href="<?= $block->escapeUrl($block->getUrl('training/post/edit', ['id'=>$block->escapeHtml($post->getentity_id())]))?>">Edit</a>
+                |
+                <a href="<?= $block->escapeUrl($block->getUrl('training/post/delete', ['id'=>$block->escapeHtml($post->getentity_id())]))?>">Delete</a>
+
+            </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
